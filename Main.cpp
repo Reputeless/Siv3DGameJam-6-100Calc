@@ -36,7 +36,7 @@ struct Title : MyApp::Scene
 
 		for (auto i : step(m_data->record.size()))
 		{
-			FontAsset(L"Bold")(L"{}: {} 秒"_fmt, i + 1, m_data->record[i]).draw(550, 300 + i * 60, Color(50));
+			FontAsset(L"Bold")(L"{} 位: {:0=2}:{:0=2}"_fmt, i + 1, m_data->record[i] / 60, m_data->record[i] % 60).draw(520, 300 + i * 60, Color(50));
 		}
 	}
 };
@@ -151,7 +151,7 @@ struct Score : MyApp::Scene
 
 		RectF(Min(m_stopwatch.ms(), Window::Width()), 90).setCenter(Window::Center().x, 200).draw(Color(50, 120, 200, 60));
 
-		FontAsset(L"Big")(L"結果").drawCenter(640, 200, Color(50));
+		FontAsset(L"Big")(L"結果 {:0=2}:{:0=2}"_fmt, m_data->previousRecord / 60, m_data->previousRecord % 60).drawCenter(640, 200, Color(50));
 
 		for (auto i : step(m_data->record.size()))
 		{
@@ -163,7 +163,7 @@ struct Score : MyApp::Scene
 				newRecord = true;
 			}
 
-			FontAsset(L"Bold")(L"{}: {} 秒"_fmt, i+1, m_data->record[i]).draw(550, 300 + i * 60, Color(50));
+			FontAsset(L"Bold")(L"{} 位: {:0=2}:{:0=2}"_fmt, i+1, m_data->record[i] / 60, m_data->record[i]%60).draw(520, 300 + i * 60, Color(50));
 		}
 	}
 };
